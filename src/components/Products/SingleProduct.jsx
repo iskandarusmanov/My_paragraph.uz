@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "next/image";
-import { HeartBrokenOutlined } from "@mui/icons-material";
 
 export default function SingleProduct() {
   const [product, setProduct] = useState([]);

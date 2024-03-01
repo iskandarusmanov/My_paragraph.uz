@@ -1,6 +1,12 @@
 import { fetchProducts } from "@/services/productsService";
 import { useState, useEffect } from "react";
-import { Star } from "@mui/icons-material";
+import {
+  Balance,
+  FavoriteBorder,
+  ScaleOutlined,
+  ScaleRounded,
+  Star,
+} from "@mui/icons-material";
 import Image from "next/image";
 import Router from "next/router";
 import { useDispatch } from "react-redux";
@@ -25,7 +31,7 @@ export default function AllProducts() {
     <div className="flex w-[1320px] m-auto flex-wrap gap-[24px]">
       {products.map((product) => (
         <div
-          className="w-[312px] h-[468px] rounded-[12px] bg-white "
+          className="w-[312px] relative h-[468px] rounded-[12px] bg-white "
           key={product.id}
         >
           <div className="w-[312px] h-[284px] flex items-center justify-center">
@@ -99,6 +105,41 @@ export default function AllProducts() {
               {product.price} $
             </p>
           </div>
+
+          <div className="w-[55px] bg-[#FF0000] rounded-[4px] absolute left-[15px] top-[13px] flex items-center justify-center h-[30px]">
+            <p className="text-[14px] text-white font-bold">
+              {" "}
+              {product.discountPercentage}%
+            </p>
+          </div>
+
+          <div className="w-[56px] h-[24px] flex items-center justify-center gap-[8px] absolute top-[12px] right-[12px]">
+            <button>
+              <Balance
+                sx={{
+                  color: "#48535B",
+                  width: "20px",
+                  height: "20px",
+                }}
+              />
+            </button>
+            <button>
+              <FavoriteBorder
+                sx={{
+                  color: "#48535B",
+                  width: "20px",
+                  height: "20px",
+                }}
+              />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="w-[48px] items-center flex justify-center h-[45px] absolute bottom-[16px] right-[16px]"
+          >
+            <img src="/icons/add_shopping_cart.svg" alt="" />
+          </button>
         </div>
       ))}
     </div>
