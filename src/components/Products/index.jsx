@@ -1,12 +1,6 @@
 import { fetchProducts } from "@/services/productsService";
 import { useState, useEffect } from "react";
-import {
-  Balance,
-  FavoriteBorder,
-  ScaleOutlined,
-  ScaleRounded,
-  Star,
-} from "@mui/icons-material";
+import { Balance, FavoriteBorder, Star } from "@mui/icons-material";
 import Image from "next/image";
 import Router from "next/router";
 import { useDispatch } from "react-redux";

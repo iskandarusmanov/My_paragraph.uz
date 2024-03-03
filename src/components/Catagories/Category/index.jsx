@@ -6,12 +6,13 @@ import Image from "next/image";
 import { Star } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { productID } from "@/redux/products.slice";
+import { Balance, FavoriteBorder } from "@mui/icons-material";
 
 export default function CategoryPage() {
   const [products, setProducts] = useState([]);
   const categoryName = useSelector((state) => state.products.category);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     if (categoryName) {
       axios
@@ -34,7 +35,7 @@ export default function CategoryPage() {
       <div className="flex flex-wrap justify-between mt-[32px] gap-y-[24px]">
         {products.map((product) => (
           <div
-            className="w-[312px] h-[468px] rounded-[12px] bg-white "
+            className="w-[312px] relative h-[468px] rounded-[12px] bg-white "
             key={product.id}
           >
             <div className="w-[312px] h-[284px] flex items-center justify-center">
@@ -110,6 +111,98 @@ export default function CategoryPage() {
                 {product.price} $
               </p>
             </div>
+
+            <div className="px-[16px]">
+              <p className="text-[#7E7E83] leading-[24px] text-[16px]">
+                {product.category}
+              </p>
+              <p className="w-[272px] leading-[19.36px] font-medium text-[16px] mt-[2px]">
+                {product.title}
+              </p>
+              <div className="h-[20px] w-[123px] flex items-center">
+                <Star
+                  sx={{
+                    color: "#F8C51B",
+                    width: "14.26px",
+                  }}
+                />
+                <Star
+                  sx={{
+                    color: "#F8C51B",
+                    width: "14.26px",
+                  }}
+                />
+                <Star
+                  sx={{
+                    color: "#F8C51B",
+                    width: "14.26px",
+                  }}
+                />
+                <Star
+                  sx={{
+                    color: "#F8C51B",
+                    width: "14.26px",
+                  }}
+                />
+                <Star
+                  sx={{
+                    color: "#c8c8ce",
+                    width: "14.26px",
+                  }}
+                />
+                <p className="font-medium text-[12px] ml-[8px] mt-1">52</p>
+              </div>
+              <div className="flex items-center gap-[5px]">
+                <div className="w-[102px] rounded-[12px] px-[8px] text-[12px] font-medium text-[#FFFFFF] my-[10px] bg-[#FF9910]">
+                  <p>1 000 000 сум</p>
+                </div>
+                <p className="text-[12px] font-medium text-[#7E7E83]">
+                  x 12 мес
+                </p>
+              </div>
+              <del className="text-[#C3C3CA] mt-[15px] text-[16px]">
+                {/* 1 200 650 000 сум */}
+                {product.price + product.discountPercentage} $
+              </del>
+              <p className="text-[20px] text-[#0D0D0D] font-semibold">
+                {product.price} $
+              </p>
+            </div>
+
+            <div className="w-[55px] bg-[#FF0000] rounded-[4px] absolute left-[15px] top-[13px] flex items-center justify-center h-[30px]">
+              <p className="text-[14px] text-white font-bold">
+                {" "}
+                {product.discountPercentage}%
+              </p>
+            </div>
+
+            <div className="w-[56px] h-[24px] flex items-center justify-center gap-[8px] absolute top-[12px] right-[12px]">
+              <button>
+                <Balance
+                  sx={{
+                    color: "#48535B",
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </button>
+              <button>
+                <FavoriteBorder
+                  sx={{
+                    color: "#48535B",
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </button>
+            </div>
+
+            <button
+              type="button"
+              className="w-[48px] items-center flex justify-center h-[45px] absolute bottom-[16px] right-[16px]"
+            >
+              <img src="/icons/add_shopping_cart.svg" alt="" />
+            </button>
           </div>
         ))}
       </div>
