@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Loader from "../UI/Loader";
+import Loader from "../Loader";
 import { Clear } from "@mui/icons-material";
 import { useDebounce } from "@/hooks/useBebounce";
 import Router from "next/router";

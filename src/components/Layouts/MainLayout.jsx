@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../Header'
-import Footer from '../Footer'
+import Header from '../UI/Header'
+import Footer from '../UI/Footer'
 
 const MainLayout = ( {children}) => {
   return (

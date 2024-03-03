@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { Balance, FavoriteBorder, Star } from "@mui/icons-material";
 import Image from "next/image";
 import Router from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { productID } from "@/redux/products.slice";
+import { putItem, removeItem } from "@/redux/favorite.slice";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
+  const favoriteProduct = useSelector((state) => state.favorite.favoriteItems);
 
   const dispatch = useDispatch();
 
@@ -20,6 +22,16 @@ export default function AllProducts() {
         console.log("err, ", err);
       });
   }, []);
+
+  const handleAddFavorite = (data) => {
+    const isFavorite = favoriteProduct.some((item) => item.id === data.id);
+
+    if (isFavorite) {
+      dispatch(removeItem(data));
+    } else {
+      dispatch(putItem(data));
+    }
+  };
 
   return (
     <div className="flex w-[1320px] m-auto flex-wrap gap-[24px]">
@@ -117,14 +129,18 @@ export default function AllProducts() {
                 }}
               />
             </button>
-            <button>
-              <FavoriteBorder
-                sx={{
-                  color: "#48535B",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
+            <button onClick={() => handleAddFavorite(product)}>
+              {favoriteProduct.some((item) => item.id === product.id) ? (
+                <img width="20px" src="/icons/Vector (1).svg" alt="" />
+              ) : (
+                <FavoriteBorder
+                  sx={{
+                    color: "#48535B",
+                    width: "22px",
+                    height: "22px",
+                  }}
+                />
+              )}
             </button>
           </div>
 
