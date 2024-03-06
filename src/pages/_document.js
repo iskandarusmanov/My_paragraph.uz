@@ -11,6 +11,7 @@ export default function Document() {
           crossorigin="anonymous"
           referrerpolicy="no-referrer"
         />
+        <title>Paragraf.uz - интернет-магазин</title>
       </Head>
       <body>
         <Main />

@@ -1,18 +1,35 @@
-import React from 'react'
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Banner from "./Banner";
 
-export default function MainBanner() {
+const MainBanner = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
+
   return (
-    <div className='w-[1320px] h-[336px] rounded-[12px] bg-white m-auto mt-[40px] flex z-5 relative'>
-    <div>
-        <h2 className='text-[48px] font-bold pt-[48px] pl-[72px] leading-[58px]'>Смартфоны в <br /> рассрочку</h2>
-        <p className='pt-[16px] pl-[72px] text-[16px] leading-[26px]'>Купить любимые смартфоны в рассрочку</p>
-        <button className='w-[174px] h-[48px] mt-[42px] ml-[72px] text-[#FFFFFF] bg-[#FF9910] hover:bg-[#ee9623] flex items-center justify-center border border-none rounded-[12px]'>
-            Смотреть все
-        </button>
+    <div className="w-[1320px] m-auto mt-[40px] text-black rounded">
+      <Slider {...settings}>
+        <div>
+          <Banner />
+        </div>
+        <div>
+          <Banner />
+        </div>
+        <div>
+          <Banner />
+        </div>
+      </Slider>
     </div>
-    <div className='ml-[229px] mt-[28px]'>
-        <img src="/images/carousel-image.jpg" alt="Carousel section image"/>
-    </div>
-</div>
-  )
-}
+  );
+};
+
+export default MainBanner;
