@@ -1,27 +1,64 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-export const cartSlice = createSlice({
-  name: 'cart',
-  initialState: {
-    cartItems: [],
-  },
+const cartSlice = createSlice({
+  name: "cart",
+  initialState: { list: [], total: 0 },
   reducers: {
-    addItem: (state, action) => {
-      state.cartItems.push(action.payload);
-    },
-    removeItem: (state, action) => {
-      state.cartItems = state.cartItems.filter(item => item.id !== action.payload.id);
-    },
-    updateItemQuantity: (state, action) => {
-      const { id, quantity } = action.payload;
-      const itemToUpdate = state.cartItems.find(item => item.id === id);
-      if (itemToUpdate) {
-        itemToUpdate.quantity = quantity;
+    addToCart(state, action) {
+      const check = state.list.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (check === -1) {
+        state.list.push(action.payload);
       }
+
+      state.total = state.list.reduce(
+        (sum, item) => sum + +item?.price * item?.quantity,
+        0
+      );
+    },
+
+    addQuantity(state, action) {
+      const check = state.list.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      state.list[check].quantity += 1;
+
+      state.total = state.list.reduce(
+        (sum, item) => sum + +item?.price * item?.quantity,
+        0
+      );
+    },
+
+    reduceQuantity(state, action) {
+      const check = state.list.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      state.list[check].quantity -= 1;
+
+      state.total = state.list.reduce(
+        (sum, item) => sum + +item?.price * item?.quantity,
+        0
+      );
+    },
+
+    removeCartItem(state, action) {
+      state.list = state.list.filter((item) => item.id !== action.payload.id);
+      state.total = state.list.reduce(
+        (sum, book) => sum + +book?.price * book?.quantity,
+        0
+      );
+    },
+
+    removeAllCartItem(state) {
+      state.list = [];
+      state.total = 0;
     },
   },
 });
 
-export const { addItem, removeItem, updateItemQuantity } = cartSlice.actions;
-
 export default cartSlice.reducer;
+
+export const { addToCart, addQuantity, reduceQuantity, removeCartItem, removeAllCartItem   } = cartSlice.actions;

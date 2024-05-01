@@ -6,12 +6,14 @@ import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { productID } from "@/redux/products.slice";
 import { putItem, removeItem } from "@/redux/favorite.slice";
+import { addToCart } from "@/redux/cart.slice";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const favoriteProduct = useSelector((state) => state.favorite.favoriteItems);
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.list);
 
   useEffect(() => {
     fetchProducts()
@@ -32,6 +34,15 @@ export default function AllProducts() {
       dispatch(putItem(data));
     }
   };
+
+  const handleAddToCart = (data) => {
+    dispatch(
+      addToCart({
+        ...data,
+        quantity: 1,
+      })
+    );
+  }
 
   return (
     <div className="flex w-[1320px] m-auto flex-wrap gap-[24px]">
@@ -104,7 +115,6 @@ export default function AllProducts() {
               <p className="text-[12px] font-medium text-[#7E7E83]">x 12 мес</p>
             </div>
             <del className="text-[#C3C3CA] mt-[15px] text-[16px]">
-              {/* 1 200 650 000 сум */}
               {product.price + product.discountPercentage} $
             </del>
             <p className="text-[20px] text-[#0D0D0D] font-semibold">
@@ -147,6 +157,7 @@ export default function AllProducts() {
           <button
             type="button"
             className="w-[48px] items-center flex justify-center h-[45px] absolute bottom-[16px] right-[16px]"
+            onClick={() => handleAddToCart(product)}
           >
             <img src="/icons/add_shopping_cart.svg" alt="" />
           </button>

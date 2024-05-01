@@ -20,7 +20,6 @@ export default function FavoritesPage() {
     }
   };
 
-  console.log("favorite ==> ", favoriteProducts.length);
 
   return (
     <div className="max-w-[1320px] m-auto mt-[40px]">

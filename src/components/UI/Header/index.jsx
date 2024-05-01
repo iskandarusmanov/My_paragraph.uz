@@ -12,6 +12,7 @@ export default function Header() {
   const isAuthh = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
   const favoriteProduct = useSelector((state) => state.favorite.favoriteItems);
+  const cartItems = useSelector((state) => state.cart);
 
   return (
     <>
@@ -45,7 +46,10 @@ export default function Header() {
         </div>
       </div>
       <div className="w-full bg-white sticky top-0 z-50">
-        <div className="w-full h-[72px] m-auto flex justify-between items-center px-[60px]">
+        <div
+          onClick={() => Router.push("/")}
+          className="w-full h-[72px] m-auto flex justify-between items-center px-[60px] cursor-pointer"
+        >
           <img src="/images/logo-paragraf-orange 1.png" alt="main_logo_img" />
           <CatagoriesList />
           <SearchInput />
@@ -66,14 +70,25 @@ export default function Header() {
               <p className="text-[12px] text-center">Избранное</p>
 
               <div className="w-[18px] h-[18px] flex justify-center absolute top-[-6px] right-[24px] items-center bg-[#FF9910] rounded-[10px]">
-                <p className="text-[10px] mt-[2px] p-0 font-bold text-white">{favoriteProduct.length}</p>
+                <p className="text-[10px] mt-[2px] p-0 font-bold text-white">
+                  {favoriteProduct.length}
+                </p>
               </div>
             </div>
-            <div className="w-[80px] h-[46px] flex-row items-center cursor-pointer">
+            <div
+              onClick={() => Router.push("/cart")}
+              className="w-[80px] h-[46px] relative flex-row items-center cursor-pointer"
+            >
               <span className="w-[24px] h-[24px] m-[28px]">
                 <i className="fa-solid fa-cart-arrow-down"></i>
               </span>
               <p className="text-[12px] text-center">Корзина</p>
+
+              <div className="w-[18px] h-[18px] flex justify-center absolute top-[-6px] right-[22px] items-center bg-[#FF9910] rounded-[10px]">
+                <p className="text-[10px] mt-[2px] p-0 font-bold text-white">
+                  {cartItems.list.length}
+                </p>
+              </div>
             </div>
           </div>
           <div className={`${isAuthh && "hidden"} flex`}>
