@@ -4,6 +4,7 @@ import Router from "next/router";
 import { putItem, removeItem } from "@/redux/favorite.slice";
 import { Star, Balance, FavoriteBorder } from "@mui/icons-material";
 import Image from "next/image";
+import { productID } from "@/redux/products.slice";
 
 export default function FavoritesPage() {
   const favoriteProducts = useSelector((state) => state.favorite.favoriteItems);

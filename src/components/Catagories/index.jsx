@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { changeCategory } from "@/redux/products.slice";
 import Router from "next/router";
-import { Route } from "@mui/icons-material";
 
 function CatagoriesList(props) {
   const { window } = props;
