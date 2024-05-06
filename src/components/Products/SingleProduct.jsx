@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "next/image";
+import ProductSlider from "../ProductSlider";
 
 export default function SingleProduct() {
   const [product, setProduct] = useState([]);
@@ -18,8 +19,6 @@ export default function SingleProduct() {
 
   const productImg = product.images;
 
-  console.log("product ==> ", product);
-
   return (
     <div className="w-[1312px] m-auto">
       <p className="text-[14px] text-[#5B6871]">
@@ -27,8 +26,10 @@ export default function SingleProduct() {
       </p>
       <div className="w-full rounded-[12px] p-[24px] mt-[32px] bg-[#FFFFFF]">
         <p className="font-semibold text-[28px]">{product.title}</p>
-        <div className="mt-[24px]">
-          <div>{/* product images carusel */}</div>
+        <div className="mt-[24px] flex gap-8">
+          <div>
+            <ProductSlider product={product}/>
+          </div>
 
           <div className="w-[396px]">
             <img

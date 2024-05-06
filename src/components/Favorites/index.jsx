@@ -64,7 +64,6 @@ export default function FavoritesPage() {
                       width: "14.26px",
                     }}
                   />
-                  {/* Rating */}
                   <p className="font-medium text-[12px] ml-[8px] mt-1">52</p>
                 </div>
                 <div className="flex items-center gap-[5px]">
@@ -76,7 +75,6 @@ export default function FavoritesPage() {
                   </p>
                 </div>
                 <del className="text-[#C3C3CA] mt-[15px] text-[16px]">
-                  {/* 1 200 650 000 сум */}
                   {product.price + product.discountPercentage} $
                 </del>
                 <p className="text-[20px] text-[#0D0D0D] font-semibold">
